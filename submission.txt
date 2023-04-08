@@ -5,16 +5,25 @@ Please fill in this form and submit it with your Project 8.
 Enter no more than 5 user stories that you did for the assignment that you would
 like to be graded on. For each story include the following information:
 
-Story number and name:
-Story points:
-Brief description to see the story in action:
+Story number and name: visibility control on photos
+Story points: 4
+Brief description to see the story in action: I can add photo and control who can see them. 
 
-Total Story Points:
+Story number and name: photo like votes
+Story points: 4
+Brief description to see the story in action: I can like and unlike photos. The photos are sorted by likes.
 
-Marketing Video URL (ensure permissions are set to public viewing):
+Story number and name: favorite lists of photos for users
+Story points: 6
+Brief description to see the story in action: I can favorite some photos and have a button to go to a page with my favorite photos. I can open a modal of the larger photo and remove favorite photos.
+
+
+Total Story Points: 14
+
+Marketing Video URL (ensure permissions are set to public viewing): https://vimeo.com/809649296
 
 Is it OK if we post your Marketing Video URL on the class discussion forum?
-[Yes/No]
+[Yes/No] Yes
 
 Any special instructions for grading (it should be easy for someone to run your
 app from a new machine):

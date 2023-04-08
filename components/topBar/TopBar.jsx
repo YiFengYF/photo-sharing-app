@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import './TopBar.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 /**
  * Define TopBar, a React componment of CS142 project #5
@@ -17,44 +18,10 @@ class TopBar extends React.Component {
       page:"",
       // checked:false,
       loginMes:"Please login",
-      uploadStatus:"",
       loginStatus:false,
     };
   }
 
-  
-  // handleChange = (event) => {
-  //   this.setState({ checked: event.target.checked });
-  //   this.props.onSetAdvFea(event.target.checked);
-  // };
-
-/**
- * Called when user presses the update button.
- */
-handleUploadButtonClicked = (e) => {
-  e.preventDefault();
-  if (this.uploadInput.files.length > 0) {
-    // Create a DOM form and add the file to it under the name uploadedphoto
-    const domForm = new FormData();
-    domForm.append('uploadedphoto', this.uploadInput.files[0]);
-    axios.post('/photos/new', domForm)
-      .then((res) => {
-        console.log(res);
-        this.setState({uploadStatus:"Upload succeeded."});
-      })
-      .catch((err)=> {
-        console.log(`POST ERR: ${err}`);
-        this.setState({uploadStatus:"Upload failed."});
-      });
-
-  }
-
-};
-
-
-  // componentDidMount(){
-    
-  // }
 
   componentDidUpdate(prevProps){
     // console.log("topbar props",this.props);
@@ -104,13 +71,13 @@ handleUploadButtonClicked = (e) => {
           </Typography>
         </Grid> 
         <Grid item xs={2}>
-          {this.state.loginStatus?
+          {this.state.loginStatus? (
             <Typography variant="body1" color="inherit" textAlign='center'>
             <Button
               onClick={()=>{
                 axios.post('/admin/logout', {})
-                .then((response) => {
-                  console.log(response);
+                .then(() => {
+                  // console.log(response);
                   // this.setState({loginStatus:false});
                   this.props.onLogin({loggedIn: false, first_name:""});
                 })
@@ -119,34 +86,55 @@ handleUploadButtonClicked = (e) => {
                 });
               }} color = "secondary" variant="contained" size="small"> Log Out 
             </Button>
-          </Typography>
+            </Typography>
+          )
           :
-          <div></div>
-          }  
+          <div></div>}  
         </Grid>        
-        <Grid item xs={3}>
-        {this.state.loginStatus?
+        <Grid item xs={2}>
+        {this.state.loginStatus? (
         <div>
           <Typography variant="body1" color="inherit">
-          <Button onClick={this.handleUploadButtonClicked} color = "secondary" variant="contained" size="small">
+          {/* <Button onClick={this.handleUploadButtonClicked} color = "secondary" variant="contained" size="small">
               Add Photo
-          </Button>
-          <input type="file" accept="image/*" ref={(domFileRef) => { this.uploadInput = domFileRef; }} />
-        </Typography>
-        <Typography variant='body2'>
-          {this.state.uploadStatus}
+          </Button> */}
+          <Link to="/addPhoto" className='add-photo'>
+            <Button color = "secondary" variant="contained" size="small">
+              Add Photo
+            </Button>
+          </Link>
           </Typography>
-        </div> 
+        
+        </div>
+      ) 
         :
-        <div></div>
-        }
+        <div></div>}
+        </Grid>
+        <Grid item xs={2}>
+        {this.state.loginStatus? (
+        <div>
+          <Typography variant="body1" color="inherit">
+          {/* <Button onClick={this.handleUploadButtonClicked} color = "secondary" variant="contained" size="small">
+              Add Photo
+          </Button> */}
+          <Link to="/favorites">
+            <Button color = "secondary" variant="contained" size="small">
+              Favorites
+            </Button>
+          </Link>
+          </Typography>
+        
+        </div>
+      ) 
+        :
+        <div></div>}
         </Grid>
         <Grid item xs={2}>
         <Typography variant="body2" color="inherit" align='center'>
              Version Number: {this.state.versionNum}
         </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
         <Typography variant="body1" color="inherit">
           {this.state.page}
         </Typography>

@@ -14,6 +14,8 @@ import UserDetail from './components/userDetail/userDetail';
 import UserList from './components/userList/userList';
 import UserPhotos from './components/userPhotos/userPhotos';
 import LoginRegister from './components/LoginRegister/LoginRegister';
+import UserFavorites from './components/userFavorites/userFavorites';
+import AddPhoto from './components/AddPhoto/AddPhoto';
 
 class PhotoShare extends React.Component {
   constructor(props) {
@@ -95,6 +97,20 @@ class PhotoShare extends React.Component {
               {
                 this.state.userIsLoggedIn ?
                   <Route path="/users" component={UserList}  />
+                  :
+                  <Redirect path="/users" to="/login-register" />
+              }  
+              {
+                this.state.userIsLoggedIn ?
+                  <Route path="/favorites" component={UserFavorites}  />
+                  :
+                  <Redirect path="/users" to="/login-register" />
+              }  
+              {
+                this.state.userIsLoggedIn ? (
+                  <Route path="/addPhoto" render ={ props => <AddPhoto newLoggedUser={this.state.loggedUser} {...props} /> }
+                  />
+                )
                   :
                   <Redirect path="/users" to="/login-register" />
               }  

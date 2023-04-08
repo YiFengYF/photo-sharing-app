@@ -116,7 +116,7 @@ class LoginRegister extends React.Component {
       password:this.state.password,
     })
     .then((response) => {
-      console.log("Response: ", response);
+      // console.log("Login Response: ", response);
       this.props.onLogin({loggedIn: true, loggedUser:response.data});
       this.setState({loggedUserId:response.data._id});
     })
@@ -160,8 +160,7 @@ class LoginRegister extends React.Component {
         description:this.state.regDescription, 
         occupation:this.state.regOccupation,
       })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         this.setState({regStatus:"Registering succeeded. Please login."});
       })
       .catch( (error) => {

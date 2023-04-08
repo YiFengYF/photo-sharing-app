@@ -14,6 +14,7 @@ var userSchema = new mongoose.Schema({
   occupation: String,
   login_name: String,
   password: String,
+  favorites:[String],
 });
 
 /**
